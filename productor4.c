@@ -1,4 +1,3 @@
-// productor_caracteres.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -24,7 +23,8 @@ int main() {
 
     // Ajustar el tamaño de la memoria compartida
     ftruncate(shm_fd, sizeof(int) * 200 + sizeof(char) * 100 + sizeof(float) * 100);
-    void *data = mmap(NULL, sizeof(int) * 200 + sizeof(char) * 100 + sizeof(float) * 100, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    void *data = mmap(NULL, sizeof(int) * 200 + sizeof(char) * 100 + sizeof(float) * 100, PROT_READ 
+    | PROT_WRITE, MAP_SHARED, shm_fd, 0);
     if (data == MAP_FAILED) {
         perror("mmap");
         exit(EXIT_FAILURE);
@@ -52,3 +52,4 @@ int main() {
 
     return 0;
 }
+

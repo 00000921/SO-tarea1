@@ -1,4 +1,3 @@
-// productor_impares.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -24,6 +23,7 @@ int main() {
     for (int i = 0; i < 100; i++) {
         data[i] = (rand() % 50) * 2 + 1;
     }
+
     sem_post(sem);
 
     // Limpiar
@@ -33,3 +33,6 @@ int main() {
 
     return 0;
 }
+
+
+

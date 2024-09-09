@@ -13,11 +13,14 @@ int main() {
     // Crear memoria compartida
     int shm_fd = shm_open(SHM_NAME, O_RDWR, 0666);
     ftruncate(shm_fd, sizeof(int) * 200 + sizeof(char) * 100 + sizeof(float) * 100);
-    void *data = mmap(NULL, sizeof(int) * 200 + sizeof(char) * 100 + sizeof(float) * 100, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    void *data = mmap(NULL, sizeof(int) * 200 + sizeof(char) * 100 + sizeof(float) * 100, PROT_READ 
+    | PROT_WRITE, MAP_SHARED, shm_fd, 0);
 
     // Crear semáforo
     sem_t *sem = sem_open(SEM_NAME, 0);
-
+    
+    srand(time(NULL));
+    
     // Generar números pares
     sem_wait(sem);
     int *numbers_even = data + sizeof(int) * 100;
@@ -31,5 +34,7 @@ int main() {
     close(shm_fd);
     sem_close(sem);
 
-    return 0;
+    return 0;  
 }
+
+
