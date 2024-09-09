@@ -11,6 +11,13 @@
 #define SEM_NAME "/my_sem"
 
 int main() {
+
+    // Compilar y ejecutar los productores en orden  
+    system("gcc productor1.c -o productor1 && ./productor1");  
+    system("gcc productor2.c -o productor2 && ./productor2");  
+    system("gcc productor3.c -o productor3 && ./productor3");  
+    system("gcc productor4.c -o productor4 && ./productor4");  
+
     // Abrir memoria compartida
     int shm_fd = shm_open(SHM_NAME, O_RDWR, 0666);
     void *data = mmap(NULL, sizeof(int) * 200 + sizeof(char) * 100 + sizeof(float) * 100, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
